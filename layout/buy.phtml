@@ -1,0 +1,166 @@
+<body>
+  <div class="background">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="container-fluid form-fluid-container">
+    <div class="row">
+      <div class="col-lg-4 col-xl-5 col-xxl-6 background-container p-lg-5">
+        <div class="image-container h-100 w-100" style="background-image: url('/assets/img/movies/<?php echo $movie['photo_url'] ?>')"></div>
+      </div>
+      <div class="col-lg-8 col-xl-7 col-xxl-6 vh-100 d-flex flex-column align-items-center justify-content-center px-5">
+        <h1 class="fs-5 mb-3">Cinefy</h1>
+        <h2 class="mb-3"><?php echo $movie['title'] ?></h2>
+        <ul class="nav nav-pills mb-0 movie-version" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="btn btn-sm btn-light mx-1 my-0 active" id="pills-lyrics-tab" data-bs-toggle="pill" data-bs-target="#pills-lyrics" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+                <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM184,96a8,8,0,0,1-8,8H80a8,8,0,0,1,0-16h96A8,8,0,0,1,184,96Zm0,32a8,8,0,0,1-8,8H80a8,8,0,0,1,0-16h96A8,8,0,0,1,184,128Zm0,32a8,8,0,0,1-8,8H80a8,8,0,0,1,0-16h96A8,8,0,0,1,184,160Z"></path>
+              </svg>
+              <span>Napisy</span>
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="btn btn-sm btn-light mx-1 my-0" id="pills-dubbing-tab" data-bs-toggle="pill" data-bs-target="#pills-dubbing" type="button" role="tab" aria-controls="pills-home" aria-selected="false">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+                <path d="M168,112a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,112Zm-8,24H96a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16Zm72-8A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-16,0A88,88,0,1,0,51.81,172.06a8,8,0,0,1,.66,6.54L40,216,77.4,203.53a7.85,7.85,0,0,1,2.53-.42,8,8,0,0,1,4,1.08A88,88,0,0,0,216,128Z"></path>
+              </svg>
+              <span>Dubbing</span>
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="btn btn-sm btn-light mx-1 my-0" id="pills-lecotr-tab" data-bs-toggle="pill" data-bs-target="#pills-lector" type="button" role="tab" aria-controls="pills-home" aria-selected="fales">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+                <path d="M128,176a48.05,48.05,0,0,0,48-48V64a48,48,0,0,0-96,0v64A48.05,48.05,0,0,0,128,176ZM96,64a32,32,0,0,1,64,0v64a32,32,0,0,1-64,0Zm40,143.6V240a8,8,0,0,1-16,0V207.6A80.11,80.11,0,0,1,48,128a8,8,0,0,1,16,0,64,64,0,0,0,128,0,8,8,0,0,1,16,0A80.11,80.11,0,0,1,136,207.6Z"></path>
+              </svg>
+              <span>Lektor</span>
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content mb-3" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-lyrics" role="tabpanel" aria-labelledby="pills-lyrics-tab">
+            <div class="d-flex">
+              <?php if (isset($sessions[MovieSession::TYPE_LYRICS])) : ?>
+                <?php foreach ($sessions[MovieSession::TYPE_LYRICS] as $session) : ?>
+                  <button class="btn btn-sm btn-light mx-1 seat-switch" data-session="<?php echo $session['id'] ?>" data-target="seat-<?php echo $session['id'] ?>">
+                    <?php echo date('H:i', strtotime($session['date'])) ?>
+                  </button>
+                <?php endforeach; ?>
+              <?php else : ?>
+                <p class="mt-5 mb-4">Brak seansów dla tego typu</p>
+              <?php endif; ?>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="pills-dubbing" role="tabpanel" aria-labelledby="pills-dubbing-tab">
+            <div class="d-flex">
+              <?php if (isset($sessions[MovieSession::TYPE_LYRICS])) : ?>
+                <?php foreach ($sessions[MovieSession::TYPE_DUBBING] as $session) : ?>
+                  <button class="btn btn-sm btn-light mx-1 seat-switch" data-session="<?php echo $session['id'] ?>" data-target="seat-<?php echo $session['id'] ?>">
+                    <?php echo date('H:i', strtotime($session['date'])) ?>
+                  </button>
+                <?php endforeach; ?>
+              <?php else : ?>
+                <p class="mt-5 mb-4">Brak seansów dla tego typu</p>
+              <?php endif; ?>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="pills-lector" role="tabpanel" aria-labelledby="pills-lector-tab">
+            <div class="d-flex">
+              <?php if (isset($sessions[MovieSession::TYPE_LYRICS])) : ?>
+                <?php foreach ($sessions[MovieSession::TYPE_LECTOR] as $session) : ?>
+                  <button class="btn btn-sm btn-light mx-1 seat-switch" data-session="<?php echo $session['id'] ?>" data-target="seat-<?php echo $session['id'] ?>">
+                    <?php echo date('H:i', strtotime($session['date'])) ?>
+                  </button>
+                <?php endforeach; ?>
+              <?php else : ?>
+                <p class="mt-5 mb-4">Brak seansów dla tego typu</p>
+              <?php endif; ?>
+            </div>
+          </div>
+        </div>
+        <?php foreach ($sessions as $sessionTypes) : ?>
+          <?php foreach ($sessionTypes as $sessionsInside) : ?>
+            <div class="seat-container px-5" id="seat-<?php echo $sessionsInside['id'] ?>" style="display: none">
+              <svg class="mb-5 screen" width="552" height="30" viewBox="0 0 552 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M537 0C545.284 6.95798e-06 552 6.71573 552 15C552 23.2843 545.284 30 537 30H15C6.71573 30 0 23.2843 0 15C0 6.71573 6.71573 0 15 0H537ZM248.992 9.76758V21H255.872V18.8076H251.728V16.3438H255.392V14.2324H251.728V11.96H255.872V9.76758H248.992ZM257.648 9.76758V21H260.384V16.04L264.16 21H267.504L262.992 15.2725L267.344 9.76758H264.128L260.384 14.6963V9.76758H257.648ZM268.805 9.76758V21H271.54V16.7598H272.196L274.532 21H277.62L275.028 16.5518C275.85 16.3064 276.469 15.8904 276.885 15.3037C277.311 14.7171 277.524 14.0502 277.524 13.3037C277.524 12.6425 277.37 12.045 277.061 11.5117C276.751 10.9678 276.282 10.5417 275.652 10.2324C275.034 9.92309 274.282 9.76758 273.396 9.76758H268.805ZM282.57 9.76758L278.506 21H281.37L282.042 19.0156H286.234L286.906 21H289.802L285.738 9.76758H282.57ZM291.039 9.76758V21H293.774V14.0723L298.351 21H301.087V9.76758H298.351V16.7275L293.774 9.76758H291.039ZM285.53 16.9043H282.762L284.138 12.792L285.53 16.9043ZM273.236 12.04C273.738 12.04 274.111 12.1629 274.356 12.4082C274.612 12.6535 274.74 12.9894 274.74 13.416C274.74 13.864 274.612 14.2107 274.356 14.4561C274.111 14.7014 273.738 14.8242 273.236 14.8242H271.54V12.04H273.236Z" fill="white" />
+              </svg>
+              <div class="grid">
+                <?php for ($i = 1; $i <= 30; $i++) : ?>
+                  <div class="seat mb-3 <?php echo array_key_exists($i, $sessionsInside['seats']) ? 'blocked' : '' ?>" data-id="<?php echo $i ?>">
+                    <svg width="55" height="45" viewBox="0 0 55 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="10" y="5" width="36" height="31" fill="#F1F1F1" class="rect" />
+                      <path d="M50 0C52.7614 0 55 2.23858 55 5V34C55 40.0751 50.0751 45 44 45H11C4.92487 45 0 40.0751 0 34V5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5V26C10 31.5228 14.4772 36 20 36H35C40.5228 36 45 31.5228 45 26V5C45 2.23858 47.2386 0 50 0ZM50 2C48.3431 2 47 3.34315 47 5C47 6.65685 48.3431 8 50 8C51.6569 8 53 6.65685 53 5C53 3.34315 51.6569 2 50 2Z" fill="currentColor" />
+                    </svg>
+                    <span class="number"><?php echo $i ?></span>
+                  </div>
+                <?php endfor; ?>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        <?php endforeach; ?>
+        <form method="post">
+          <input type="hidden" name="session_id">
+          <input type="hidden" name="ids">
+          <div class="d-flex">
+            <a href="/" class="btn btn-light me-2">Powrót</a>
+            <input type="submit" value="Zarezerwuj miejsca" class="btn">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    $('.seat:not(.blocked)').on('click', function() {
+      $(this).toggleClass('active');
+
+      let value = [];
+
+      $('.seat').each(function(index, elem) {
+        if ($(elem).hasClass('active')) {
+          value.push($(elem).data('id'));
+        }
+      })
+
+      $('input[name=ids]').val(JSON.stringify(value));
+    })
+
+    $('.movie-version .btn').on('click', function() {
+      $('.movie-version .btn').removeClass('active');
+      $(this).addClass('active');
+
+      $('.seat-switch').removeClass('active');
+      $('.seat-container').hide();
+    })
+
+    $('.seat-switch').on('click', function() {
+      $('.seat-switch').removeClass('active');
+      $(this).addClass('active');
+
+      $('input[name=session_id]').val($(this).data('session'));
+
+      $('.seat-container').hide();
+      $('.seat').removeClass('active');
+      $('input[name=ids]').val(null);
+
+      $('.seat-container#' + $(this).data('target')).show();
+    })
+  </script>
+</body>

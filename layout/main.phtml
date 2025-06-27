@@ -1,0 +1,60 @@
+<body>
+     <div class="background">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+     </div>
+     <div class="container-fluid text-center main-container position-relative">
+          <div class="container">
+               <h1>Cinefy</h1>
+               <p class="small">Rezerwuj miejsca na seansy w Twoim mieście</p>
+          </div>
+     </div>
+     <div class="container-fluid mb-3 py-5 main-movies-container">
+          <div class="container">
+               <div class="row photos-container mt-4">
+                    <?php $i = 0 ?>
+                    <?php foreach ($movies as $movie) : ?>
+                         <div class="col-6 col-md-4 col-lg-3 mb-4">
+                              <div class="movie-container" style="animation: fadeup .4s <?php echo $i ?>s forwards">
+                                   <div class="photo-container position-relative">
+                                        <div class="photo">
+                                             <img src="assets/img/movies/<?php echo $movie['photo_url'] ?>" class="img-fluid">
+                                        </div>
+                                        <div class="desc px-4 py-5 text-center">
+                                             <p class="small"><?php echo $movie['description'] ?></p>
+                                             <form method="get" action="buy">
+                                                  <input type="hidden" name="id" value="<?php echo $movie['id'] ?>">
+                                                  <input type="submit" class="btn" value="Rezerwuj">
+                                             </form>
+                                        </div>
+                                   </div>
+                                   <div class="text-center pt-3">
+                                        <p class="title mb-0"><?php echo $movie['title'] ?></p>
+                                        <p class="small"><?php echo sprintf('%d / 30 zajęte', $movie['seats']) ?></p>
+                                   </div>
+                              </div>
+                         </div>
+                         <?php $i += 0.1 ?>
+                    <?php endforeach; ?>
+               </div>
+          </div>
+     </div>
+</body>
