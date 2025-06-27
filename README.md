@@ -12,11 +12,6 @@ A web application that allows you to reserve seats for different films at differ
 ## Config
 
 The configuration is in the root folder in a file named `config.php`.
-
-```
-    $config['project']['name'] = 'Cinefy'
-```
-
 Database connection settings should be setted in 'database' key.
 
 ```
