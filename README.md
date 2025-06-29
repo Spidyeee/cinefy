@@ -7,7 +7,7 @@ A web application that allows you to reserve seats for different films at differ
 ## Contributors (Student IDs)
 
 - @jpajak 64814
-- @mjachimowski
+- @mjachimowski 72975
 
 ## Config
 
