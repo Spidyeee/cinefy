@@ -27,6 +27,13 @@ class MovieSeat
     public $seat_id;
 
     /**
+     * User id.
+     * 
+     * @var null|int
+     */
+    public $user_id;
+
+    /**
      * Construct.
      */
     public function __construct() {}

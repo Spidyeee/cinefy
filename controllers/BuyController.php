@@ -10,6 +10,8 @@ class Controller
      */
     public function __construct()
     {
+        require('layout/welcome.phtml');
+
         $this->handleForm();
 
         $movie = Movie::getMovie($_GET['id']);
@@ -39,6 +41,10 @@ class Controller
             $seat = new MovieSeat();
             $seat->session_id = $_POST['session_id'];
             $seat->seat_id = $seatId;
+
+            if (isset($_SESSION['id'])) {
+                $seat->user_id = $_SESSION['id'];
+            }
 
             $query = \Cinefy::$database->save(MovieSeat::getTableName(), $seat);
         }

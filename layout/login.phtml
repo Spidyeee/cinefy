@@ -1,0 +1,48 @@
+<body>
+    <div class="background">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="container-fluid form-fluid-container d-flex justify-content-center pt-5 vh-100 align-items-center">
+        <div class="form-container">
+            <a href="./">
+                <h1 class="fs-5 mb-3 text-white">Cinefy</h1>
+            </a>
+            <p>Logowanie</p>
+            <?php
+            if (!empty($results)) {
+                \Cinefy::addMessage($results['result'], $results['message']);
+            }
+
+            ?>
+            <form method="post" id="loginForm">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" id="email">
+                <label for="email">Haslo</label>
+                <input type="password" class="form-control" name="password" id="password">
+                <input type="submit" class="btn btn-primary w-100" value="Zaloguj sie">
+            </form>
+            <p class="mt-5 mb-0">Nie masz konta?</p>
+            <a href="register" class="btn btn-secondary w-100">Zarejestruj sie</a>
+        </div>
+    </div>
+    </div>
+</body>

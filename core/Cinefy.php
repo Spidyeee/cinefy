@@ -66,9 +66,9 @@ class Cinefy
             return;
         }
 
-        require('layout/welcome.phtml');
-
         if (!self::getController()) {
+
+            require('layout/welcome.phtml');
             require 'core/Movie.php';
             $movies = Movie::getMovies();
             require 'layout/main.phtml';
@@ -98,15 +98,17 @@ class Cinefy
 
         $controller = substr($path, 1);
 
+        $controller = explode('/', $controller);
+
         if (isset($path[1]) && null != $path[1]) {
             // Search for controller
-            if (file_exists('controllers/' . ucfirst($controller) . 'Controller.php')) {
-                require 'controllers/' . ucfirst($controller) . 'Controller.php';
+            if (file_exists('controllers/' . ucfirst($controller[0]) . 'Controller.php')) {
+                require 'controllers/' . ucfirst($controller[0]) . 'Controller.php';
             } else {
-                throw new Exception(ucfirst($path[$i]) . 'Controller.php does not exist');
+                throw new Exception(ucfirst($controller[0]) . 'Controller.php does not exist');
             }
 
-            new Controller();
+            new Controller($controller[1] ?? null);
             return true;
         }
 
@@ -133,6 +135,7 @@ class Cinefy
     public static function redirect(string $url): void
     {
         header('Location: ' . $url);
+        exit;
     }
 
     /**

@@ -1,0 +1,45 @@
+<body>
+    <div class="container-fluid text-center account-container">
+        <div class="container">
+
+        </div>
+    </div>
+    <div class="container-fluid py-5">
+        <div class="container">
+            <h2>Moje rezerwacje</h2>
+            <div class="reservations-container mt-4">
+                <?php foreach ($seats as $post) : ?>
+                    <div class="p-3 border rounded d-flex mb-3">
+                        <div class="me-4">
+                            <img src="assets/img/movies/<?php echo $post['photo_url'] ?>" style="width: 100px" class="rounded">
+                        </div>
+                        <div>
+                            <h3><?php echo $post['title'] ?></h3>
+                            <p class="small">
+                                <span class="me-1"><?php echo date('d.m.Y H:i', strtotime($post['date'])) ?></span>
+                                -
+                                <span class="ms-1">
+                                    <?php
+                                    switch ($post['type']) {
+                                        case MovieSession::TYPE_DUBBING:
+                                            echo 'Dubbing';
+                                            break;
+                                        case MovieSession::TYPE_LECTOR:
+                                            echo 'Lektor';
+                                            break;
+                                        case MovieSession::TYPE_LYRICS:
+                                            echo 'Napisy';
+                                            break;
+                                    }
+                                    ?>
+                                </span>
+                            </p>
+                            <p>Miejsce: <?php echo $post['seat_id'] ?></p>
+                        </div>
+
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</body>

@@ -50,6 +50,7 @@ h2 {
   font-size: $font-size;
   display: flex;
   align-items: center;
+  justify-content: center;
   &:hover {
     background-color: #d6d6d6;
   }
@@ -113,6 +114,10 @@ h2 {
 
 label {
   font-size: $font-size;
+}
+
+.border {
+  border-color: #3e3e3e !important;
 }
 
 .form-control {

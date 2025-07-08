@@ -1,0 +1,54 @@
+<body>
+    <div class="background">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <?php require 'navbar.phtml' ?>
+    <div class="container-fluid form-fluid-container">
+        <div class="row">
+            <div class="col-lg-6 vh-100 d-flex align-items-center justify-content-center">
+                <div class="form-container">
+                    <a href="./">
+                        <h1 class="fs-5 mb-3 text-white">Cinefy</h1>
+                    </a>
+                    <p>Zmiana hasła</p>
+                    <?php
+                    if (!empty($results)) {
+                        \Cinefy::addMessage($results['result'], $results['message']);
+                    }
+
+                    ?>
+                    <form method="post" id="editPasswordForm">
+                        <label for="email">Stare haslo</label>
+                        <input type="password" class="form-control" placeholder="min. 6 znaków" name="password" id="password">
+                        <label for="email">Nowe haslo</label>
+                        <input type="password" class="form-control" placeholder="min. 6 znaków" name="newpassword" id="newpassword">
+                        <label for="email">Potwierdz haslo</label>
+                        <input type="password" class="form-control" name="repassword" id="repassword">
+                        <input type="submit" class="btn btn-primary w-100" value="Zmien haslo">
+                    </form>
+                    <a href="login" class="btn btn-secondary w-100">Powrót</a>
+                </div>
+            </div>
+            <div class="col-lg-6 background-container"></div>
+        </div>
+    </div>
+</body>
